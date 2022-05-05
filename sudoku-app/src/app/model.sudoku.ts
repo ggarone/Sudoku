@@ -322,17 +322,24 @@ export class Sudoku {
   }
 
   getSudokuMatrix() {
+    this.pokeHolesIntoPuzzle();
     return this.sudokuMatrix;
   }
 
   pokeHolesIntoPuzzle() {
-    let chance = 0.50;
-    for (let i = 0; i < this.max; i++) {
-      for (let j = 0; j < this.max; j++) {
-        // if(){}
+    let chance = 5;
+    let flag = 35; // make a easu sudoku with only 49 Holes
+    while(flag > 0){
+      for (let i = 0; i < this.max; i++) {
+        for (let j = 0; j < this.max; j++) {
+          let randomNum = Math.floor(Math.random() * 100) + 1;
+          if(randomNum <= chance && flag > 0 && this.sudokuMatrix[i][j] != -1){
+            this.sudokuMatrix[i][j] = -1;
+            flag--;
+          }
+        }
       }
     }
-
   }
 
   checkIfBoardIsValid() : boolean {
