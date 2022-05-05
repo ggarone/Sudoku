@@ -12,8 +12,7 @@ export class AppComponent {
   
   
   ngOnInit(): void {
-    let s: Sudoku = new Sudoku(9,9,0);
-    console.log(s.getSudokuMatrix());
+    let s: Sudoku = new Sudoku();
     
     // console.log("sudoku");
   }
