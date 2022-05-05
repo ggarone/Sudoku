@@ -179,7 +179,7 @@
 
 //         // Recursively call the fill function to place num in next empty cell
 //         this.fillPuzzle();
-        
+
 //         // If we were unable to place the future num, that num was wrong. 
 //         // Reset it and try next
 //         this.sudokuMatrix[emptyCell.row][emptyCell.col] = 0;
@@ -210,44 +210,51 @@ export class Sudoku {
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
   ]
-  
+
   counter: number;
+  max: number = 9;
   numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  emptyCell = {
+    rowIndex: 0,
+    colIndex: 0
+  }
 
   constructor() {
     this.sudokuMatrix = this.fillPuzzle(this.sudokuMatrix);
     console.log(this.sudokuMatrix);
+    console.log("Is board valid?? => " + this.checkIfBoardIsValid());
     
+
   }
-  
+
   shuffle(array) {
     let newArray = [...array]
-    for ( let i = newArray.length - 1; i > 0; i-- ) {
-        const j = Math.floor( Math.random() * ( i + 1 ) );
-        [ newArray[ i ], newArray[ j ] ] = [ newArray[ j ], newArray[ i ] ];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
     }
     return newArray;
   }
-  
+
   /*--------------------------------------------------------------------------------------------
   --------------------------------- Check if Location Safe -------------------------------------
   --------------------------------------------------------------------------------------------*/
-  
+
   rowSafe = (puzzleArray, emptyCell, num) => {
     // -1 is return value of .find() if value not found
-    return puzzleArray[emptyCell.rowIndex].indexOf(num) == -1 
+    return puzzleArray[emptyCell.rowIndex].indexOf(num) == -1
   }
   colSafe = (puzzleArray, emptyCell, num) => {
-    return !puzzleArray.some(row => row[ emptyCell.colIndex ] == num )
+    return !puzzleArray.some(row => row[emptyCell.colIndex] == num)
   }
-  
+
   boxSafe = (puzzleArray, emptyCell, num) => {
     let init_x = emptyCell.rowIndex - (emptyCell.rowIndex % 3) // Define top left corner of box region for empty cell
     let init_y = emptyCell.colIndex - (emptyCell.colIndex % 3)
     let safe = true
-  
-    for (let x of [0,1,2]) {  // Each box region has 3 rows
-      for (let y of [0,1,2]) { // Each box region has 3 columns
+
+    for (let x of [0, 1, 2]) { // Each box region has 3 rows
+      for (let y of [0, 1, 2]) { // Each box region has 3 columns
         if (puzzleArray[init_x + x][init_y + y] == num) { // Num is present in box region?
           safe = false // If number is found, it is not safe to place
         }
@@ -255,57 +262,60 @@ export class Sudoku {
     }
     return safe
   }
-  
-  safeToPlace = ( puzzleArray, emptyCell, num ) => {
-    return this.rowSafe(puzzleArray, emptyCell, num) && 
-    this.colSafe(puzzleArray, emptyCell, num) && 
-    this.boxSafe(puzzleArray, emptyCell, num) 
+
+  safeToPlace = (puzzleArray, emptyCell, num) => {
+    return this.rowSafe(puzzleArray, emptyCell, num) &&
+      this.colSafe(puzzleArray, emptyCell, num) &&
+      this.boxSafe(puzzleArray, emptyCell, num)
   }
-  
+
   /*--------------------------------------------------------------------------------------------
   --------------------------------- Obtain Next Empty Cell -------------------------------------
   --------------------------------------------------------------------------------------------*/
-  
+
   nextEmptyCell = puzzleArray => {
-    const emptyCell = {rowIndex: "", colIndex: ""}
-  
-    puzzleArray.forEach( (row, rowIndex) => {
-        if (emptyCell.colIndex !== "" ) return // If this key has already been assigned, skip iteration
-        let firstZero = row.find( col => col === 0) // find first zero-element
-        if (firstZero === undefined) return; // if no zero present, skip to next row
-        emptyCell.rowIndex = rowIndex
-        emptyCell.colIndex = row.indexOf(firstZero)
-      })
-    
-    if (emptyCell.colIndex !== "" ) return emptyCell
+    const emptyCell = {
+      rowIndex: "",
+      colIndex: ""
+    }
+
+    puzzleArray.forEach((row, rowIndex) => {
+      if (emptyCell.colIndex !== "") return // If this key has already been assigned, skip iteration
+      let firstZero = row.find(col => col === 0) // find first zero-element
+      if (firstZero === undefined) return; // if no zero present, skip to next row
+      emptyCell.rowIndex = rowIndex
+      emptyCell.colIndex = row.indexOf(firstZero)
+    })
+
+    if (emptyCell.colIndex !== "") return emptyCell
     // If emptyCell was never assigned, there are no more zeros
     return false
   }
-  
+
   /*--------------------------------------------------------------------------------------------
   --------------------------------- Generate Filled Board -------------------------------------
   --------------------------------------------------------------------------------------------*/
-  
+
   fillPuzzle = startingBoard => {
     const emptyCell = this.nextEmptyCell(startingBoard)
     // If there are no more zeros, the board is finished, return it
     if (!emptyCell) return startingBoard
-  
+
     // Shuffled [0 - 9 ] array fills board randomly each pass
-    for (let num of this.shuffle(this.numArray) ) {   
+    for (let num of this.shuffle(this.numArray)) {
       // counter is a global variable tracking the number of iterations performed in generating a puzzle
       // Most puzzles generate in < 500ms, but occassionally random generation could run in to
       // heavy backtracking and result in a long wait. Best to abort this attempt and restart.
       // 20_000_000 iteration maximum is approximately 1.3 sec runtime.
       // See initializer function for more
       this.counter++
-      if ( this.counter > 20_000_000 ) throw new Error ("Recursion Timeout")
-      if ( this.safeToPlace( startingBoard, emptyCell, num) ) {
-        startingBoard[ emptyCell.rowIndex ][ emptyCell.colIndex ] = num // If safe to place number, place it
+      if (this.counter > 20_000_000) throw new Error("Recursion Timeout")
+      if (this.safeToPlace(startingBoard, emptyCell, num)) {
+        startingBoard[emptyCell.rowIndex][emptyCell.colIndex] = num // If safe to place number, place it
         // Recursively call the fill function to place num in next empty cell
-        if ( this.fillPuzzle(startingBoard) ) return startingBoard 
+        if (this.fillPuzzle(startingBoard)) return startingBoard
         // If we were unable to place the future num, that num was wrong. Reset it and try next value
-        startingBoard[ emptyCell.rowIndex ][ emptyCell.colIndex ] = 0
+        startingBoard[emptyCell.rowIndex][emptyCell.colIndex] = 0
       }
     }
     return false // If unable to place any number, return false, which triggers previous round to go to next num
@@ -315,13 +325,31 @@ export class Sudoku {
     return this.sudokuMatrix;
   }
 
-  pokeHolesIntoPuzzle(){
+  pokeHolesIntoPuzzle() {
+    let chance = 0.50;
+    for (let i = 0; i < this.max; i++) {
+      for (let j = 0; j < this.max; j++) {
+        // if(){}
+      }
+    }
 
   }
 
-  checkIfBoardIsValid(){
-    
+  checkIfBoardIsValid() : boolean {
+    for (let i = 0; i < this.max; i++) {
+      for (let j = 0; j < this.max; j++) {
+        this.emptyCell.rowIndex = i;
+        this.emptyCell.colIndex = j;
+        if (!(this.sudokuMatrix[i][j] > 0 && this.sudokuMatrix[i][j] <= this.max && this.safeToPlace(this.sudokuMatrix,this.emptyCell,this.sudokuMatrix[i][j]))) {
+          return false;
+        }
+      }
+    }
+    return true;
   }
+} 
 
 
-}
+
+
+
