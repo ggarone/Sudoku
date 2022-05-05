@@ -25,4 +25,14 @@ export class InterfaceComponent implements OnInit {
       ]
     }
 
+    checkSudokuInput() {
+      const input = document.getElementById();
+      input.addEventListener('keydown', function(typedChar){
+        var letterRegex = /[^0-9]/;
+      
+        if(letterRegex.test(typedChar.key) && typedChar.key !== 'Backspace'){
+          typedChar.preventDefault();
+        }
+    }
+
 }
