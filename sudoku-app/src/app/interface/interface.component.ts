@@ -9,8 +9,6 @@ import { Sudoku } from '../model.sudoku';
 export class InterfaceComponent implements OnInit {
     sudoku: number[][];
   
-  
-    
     ngOnInit(): void {
       let s: Sudoku = new Sudoku();
       // this.sudoku = s.getSudokuMatrix();
