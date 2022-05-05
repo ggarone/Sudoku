@@ -7,7 +7,7 @@
         <td class="boardCell" *ngFor="let y of x">
           <div class="staticValue">
             <span *ngIf="y != -1">{{y}}</span>
-            <input id="inputNum" class="" type="text" *ngIf="y == -1" maxlength="1">
+            <input id="inputNum" class="" type="text" *ngIf="y == -1" maxlength="1" (keydown)="checkSudokuInput($event)">
           </div>
         </td>
       </tr>

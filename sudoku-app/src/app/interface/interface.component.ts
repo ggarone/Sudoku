@@ -12,28 +12,16 @@ export class InterfaceComponent implements OnInit {
     ngOnInit(): void {
       let s: Sudoku = new Sudoku();
       this.sudoku = s.getSudokuMatrix();
-      // this.sudoku = [
-      //   [0, 0, 0, 0, 0, 0, 0, -1, 0],
-      //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      //   [0, 0, 0, -1, 0, 0, 0, 0, 0],
-      //   [-1, 0, 0, 0, 0, 0, 0, 0, 0],
-      //   [0, 0, 0, 0, 0, 0, 0, 0, 0],
-      //   [0, 0, 0, 0, 0, 0, -1, 0, 0],
-      //   [0, 0, 0, 0, 0, 0, 0, 0, 0]
-      // ]
-    }
-
-    checkSudokuInput() {
-      const input = document.getElementById("inputNum");
-      input.addEventListener('keydown', function(typedChar){
-        var letterRegex = /[^0-9]/;
+  }
+  
+  checkSudokuInput(typedChar) {
+    let letterRegex = /[^0-9]/;
       
-        if(letterRegex.test(typedChar.key) && typedChar.key !== 'Backspace'){
-          typedChar.preventDefault();
-        }
-    }
+      if(letterRegex.test(typedChar.key) && typedChar.key !== 'Backspace'){
+        typedChar.preventDefault();
+      }
+  }
+    
 
     
 }
