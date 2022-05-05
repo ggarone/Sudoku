@@ -314,4 +314,14 @@ export class Sudoku {
   getSudokuMatrix() {
     return this.sudokuMatrix;
   }
+
+  pokeHolesIntoPuzzle(){
+
+  }
+
+  checkIfBoardIsValid(){
+    
+  }
+
+
 }
