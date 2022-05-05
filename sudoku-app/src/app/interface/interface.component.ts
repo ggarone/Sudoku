@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Sudoku } from '../model.sudoku';
 
 @Component({
   selector: 'app-interface',
@@ -6,10 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interface.component.css']
 })
 export class InterfaceComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+    sudoku: number[][];
+  
+  
+    
+    ngOnInit(): void {
+      let s: Sudoku = new Sudoku();
+      this.sudoku = s.getSudokuMatrix();
+    }
 
 }
