@@ -12,6 +12,12 @@ export class InterfaceComponent implements OnInit {
     ngOnInit(): void {
       let s: Sudoku = new Sudoku();
       this.sudoku = s.getSudokuMatrix();
+      console.log(this.sudoku);
+      console.log("Is board valid?? => " + s.checkIfBoardIsValid(this.sudoku));
+      // s.pokeHolesIntoPuzzle();
+      // this.sudoku = s.getSudokuMatrix();
+      // console.log(this.sudoku);
+      // console.log("Is board valid?? => " + s.checkIfBoardIsValid());
   }
   
   checkSudokuInput(typedChar) {
@@ -21,7 +27,4 @@ export class InterfaceComponent implements OnInit {
         typedChar.preventDefault();
       }
   }
-    
-
-    
 }

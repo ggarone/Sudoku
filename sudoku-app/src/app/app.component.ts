@@ -7,15 +7,15 @@ import { Sudoku } from './model.sudoku';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  sudoku: number[][];
+  // sudoku: number[][];
 
 
   
   
   
   ngOnInit(): void {
-    let s: Sudoku = new Sudoku();
-    this.sudoku = s.getSudokuMatrix();
+    // let s: Sudoku = new Sudoku();
+    // this.sudoku = s.getSudokuMatrix();
   }
   
   

@@ -1,24 +1,12 @@
 // export class Sudoku {
-//   w: number;
-//   h: number;
-//   val: number;
-//   sudokuMatrix: number[][];
+//   sudokuMatrix;
 //   dim: number = 3;
 //   max: number = 9;
-//   map = new Map();
 //   counter = 0;
 
-//   constructor(w: number, h: number, val: number) {
-//     // let sudokuMatrix = this.makeMatrix(9,9,0);
-//     // console.log("|||||" + sudokuMatrix);
-//     this.w = w;
-//     this.h = h;
-//     this.val = val;
+//   constructor() {
 //     this.sudokuMatrix = this.makeMatrix();
-//     // this.populateSquares();
-//     this.populateSudoku();
-//     // console.log(this.getSquareFromCoord(4,3));
-//     // this.fillPuzzle();
+//     this.fillPuzzle();
 //   }
 
 //   createArrayNum(): number[] {
@@ -30,40 +18,39 @@
 //     return this.sudokuMatrix;
 //   }
 
-
 //   makeMatrix(): number[][] {
-//     var arr = [];
-//     for (let i = 0; i < this.h; i++) {
+//     let arr = [];
+//     for (let i = 0; i < this.max; i++) {
 //       arr[i] = [];
-//       for (let j = 0; j < this.w; j++) {
-//         arr[i][j] = this.val;
+//       for (let j = 0; j < this.max; j++) {
+//         arr[i][j] = 0;
 //       }
 //     }
 //     return arr;
 //   }
 
-//   populateSquares(): void {
+//   // populateSquares(): void {
 
-//     let arrayNum = this.createArrayNum();
-//     //random first square
+//   //   let arrayNum = this.createArrayNum();
+//   //   //random first square
 
-//     for (let u = 0; u < this.max; u += 3) {
-//       for (let i = u; i < this.dim + u; i++) {
-//         for (let j = u; j < this.dim + u; j++) {
+//   //   for (let u = 0; u < this.max; u += 3) {
+//   //     for (let i = u; i < this.dim + u; i++) {
+//   //       for (let j = u; j < this.dim + u; j++) {
 
-//           const index = arrayNum.indexOf(Math.floor(Math.random() * this.max) + 1);
-//           // if found
-//           if (index > -1) {
-//             this.sudokuMatrix[i][j] = arrayNum[index];
-//             arrayNum.splice(index, 1); // 2nd parameter means remove one item only
-//           } else {
-//             j--;
-//           }
-//         }
-//       }
-//       arrayNum = this.createArrayNum();
-//     }
-//   }
+//   //         const index = arrayNum.indexOf(Math.floor(Math.random() * this.max) + 1);
+//   //         // if found
+//   //         if (index > -1) {
+//   //           this.sudokuMatrix[i][j] = arrayNum[index];
+//   //           arrayNum.splice(index, 1); // 2nd parameter means remove one item only
+//   //         } else {
+//   //           j--;
+//   //         }
+//   //       }
+//   //     }
+//   //     arrayNum = this.createArrayNum();
+//   //   }
+//   // }
 
 //   checkRow(number, row): boolean {
 //     for (let j = 0; j < this.max; j++) {
@@ -84,17 +71,17 @@
 //   }
 
 //   checkSquare(number: number, x: number, y: number): boolean {
-//     let coordArray = this.getSquareFromCoord(x, y);
-//     let init_x = coordArray[0];
-//     let init_y = coordArray[1];
+//     let init_x = x - (x % 3);
+//     let init_y = y - (y % 3);
 
-//     for (let i = init_x; i < this.dim; i++) {
-//       for (let j = init_y; j < this.dim; j++) {
+//     for (let i = init_x; i < this.dim+init_x; i++) {
+//       for (let j = init_y; j < this.dim+init_y; j++) {
 //         if (this.sudokuMatrix[i][j] == number)
 //           return false;
 //       }
 //     }
 //     return true;
+
 //   }
 
 //   getSquareFromCoord(x: number, y: number): number[] {
@@ -103,28 +90,28 @@
 //     return [init_x, init_y];
 //   }
 
-//   populateSudoku(): void {
-//     let counter = 0;
-//     let arrayNum = this.shuffle(this.createArrayNum())
-//     console.log("alive");
+//   // populateSudoku(): void {
+//   //   let counter = 0;
+//   //   let arrayNum = this.shuffle(this.createArrayNum())
+//   //   console.log("alive");
 
-//     for (let i = 0; i < this.max; i++) {
-//       for (let j = 0; j < this.max; j++) {
-//         if (this.sudokuMatrix[i][j] == 0 && arrayNum.length != 0) {
-//           // if found
-//           console.log("Adding=>" + arrayNum[counter]);
-//           if (this.checkNumber(arrayNum[counter], i, j)) {
-//             this.sudokuMatrix[i][j] = arrayNum[counter];
-//             arrayNum = this.shuffle(this.createArrayNum())
-//           } else {
-//             arrayNum.splice(counter, 1); // 2nd parameter means remove one item only
-//             j--;
-//           }
-//         }
-//       }
-//     }
-//     console.log(this.getSudokuMatrix());
-//   }
+//   //   for (let i = 0; i < this.max; i++) {
+//   //     for (let j = 0; j < this.max; j++) {
+//   //       if (this.sudokuMatrix[i][j] == 0 && arrayNum.length != 0) {
+//   //         // if found
+//   //         console.log("Adding=>" + arrayNum[counter]);
+//   //         if (this.checkNumber(arrayNum[counter], i, j)) {
+//   //           this.sudokuMatrix[i][j] = arrayNum[counter];
+//   //           arrayNum = this.shuffle(this.createArrayNum())
+//   //         } else {
+//   //           arrayNum.splice(counter, 1); // 2nd parameter means remove one item only
+//   //           j--;
+//   //         }
+//   //       }
+//   //     }
+//   //   }
+//   //   console.log(this.getSudokuMatrix());
+//   // }
 
 //   nextEmptyCell() {
 //     let emptyCell = {
@@ -195,6 +182,35 @@
 //       return true;
 //     return false;
 //   }
+
+//     pokeHolesIntoPuzzle() {
+//       let chance = 5;
+//       let flag = 35; // make a easu sudoku with only 49 Holes
+//       while (flag > 0) {
+//         for (let i = 0; i < this.max; i++) {
+//           for (let j = 0; j < this.max; j++) {
+//             let randomNum = Math.floor(Math.random() * 100) + 1;
+//             if (randomNum <= chance && flag > 0 && this.sudokuMatrix[i][j] != -1) {
+//               this.sudokuMatrix[i][j] = -1;
+//               flag--;
+//             }
+//           }
+//         }
+//       }
+//     }
+
+//     checkIfBoardIsValid(sudokuMatrix): boolean {
+//       for (let i = 0; i < this.max; i++) {
+//         for (let j = 0; j < this.max; j++) {
+//           console.log(`checking if ${sudokuMatrix[i][j]} can is safe a position [${i}][${j}]`);
+//           let safeToPlaceCheck = this.checkNumber(sudokuMatrix[i][j],i,j);
+//           if (!(sudokuMatrix[i][j] > 0 && sudokuMatrix[i][j] <= this.max && safeToPlaceCheck)) {
+//             return false;
+//           }
+//         }
+//       }
+//       return true;
+//     }
 // }
 
 
@@ -213,6 +229,7 @@ export class Sudoku {
 
   counter: number;
   max: number = 9;
+  dim: number = 3;
   numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   emptyCell = {
     rowIndex: 0,
@@ -221,10 +238,6 @@ export class Sudoku {
 
   constructor() {
     this.sudokuMatrix = this.fillPuzzle(this.sudokuMatrix);
-    console.log(this.sudokuMatrix);
-    console.log("Is board valid?? => " + this.checkIfBoardIsValid());
-    
-
   }
 
   shuffle(array) {
@@ -240,27 +253,64 @@ export class Sudoku {
   --------------------------------- Check if Location Safe -------------------------------------
   --------------------------------------------------------------------------------------------*/
 
-  rowSafe = (puzzleArray, emptyCell, num) => {
-    // -1 is return value of .find() if value not found
-    return puzzleArray[emptyCell.rowIndex].indexOf(num) == -1
-  }
-  colSafe = (puzzleArray, emptyCell, num) => {
-    return !puzzleArray.some(row => row[emptyCell.colIndex] == num)
+  // rowSafe = (puzzleArray, emptyCell, num) => {
+  //   // -1 is return value of .find() if value not found
+  //   return puzzleArray[emptyCell.rowIndex].indexOf(num) == -1
+  // }
+  // colSafe = (puzzleArray, emptyCell, num) => {
+  //   return !puzzleArray.some(row => row[emptyCell.colIndex] == num)
+  // }
+
+  // boxSafe = (puzzleArray, emptyCell, num) => {
+  //   let init_x = emptyCell.rowIndex - (emptyCell.rowIndex % 3) // Define top left corner of box region for empty cell
+  //   let init_y = emptyCell.colIndex - (emptyCell.colIndex % 3)
+  //   let safe = true
+
+  //   for (let x of [0, 1, 2]) { // Each box region has 3 rows
+  //     for (let y of [0, 1, 2]) { // Each box region has 3 columns
+  //       if (puzzleArray[init_x + x][init_y + y] == num) { // Num is present in box region?
+  //         safe = false // If number is found, it is not safe to place
+  //       }
+  //     }
+  //   }
+  //   return safe
+  // }
+
+  rowSafe(sudokuMatrix,emptyCell,number): boolean {
+    let row = emptyCell.rowIndex;
+    let column = emptyCell.colIndex;
+    for (let j = 0; j < this.max; j++) {
+      if (sudokuMatrix[row][j] == number && j != column)
+        return false;
+    }
+    return true;
+
   }
 
-  boxSafe = (puzzleArray, emptyCell, num) => {
-    let init_x = emptyCell.rowIndex - (emptyCell.rowIndex % 3) // Define top left corner of box region for empty cell
-    let init_y = emptyCell.colIndex - (emptyCell.colIndex % 3)
-    let safe = true
+  colSafe(sudokuMatrix,emptyCell,number): boolean {
+    let row = emptyCell.rowIndex;
+    let column = emptyCell.colIndex;
+    for (let i = 0; i < this.max; i++) {
+      if (sudokuMatrix[i][column] == number && i != row)
+        return false;
+    }
+    return true;
 
-    for (let x of [0, 1, 2]) { // Each box region has 3 rows
-      for (let y of [0, 1, 2]) { // Each box region has 3 columns
-        if (puzzleArray[init_x + x][init_y + y] == num) { // Num is present in box region?
-          safe = false // If number is found, it is not safe to place
-        }
+  }
+
+  boxSafe(sudokuMatrix,emptyCell,number): boolean {
+    let row = emptyCell.rowIndex;
+    let column = emptyCell.colIndex;
+    let init_x = row - (row % 3);
+    let init_y = column - (column % 3);
+
+    for (let i = init_x; i < this.dim+init_x; i++) {
+      for (let j = init_y; j < this.dim+init_y; j++) {
+        if (sudokuMatrix[i][j] == number && (!(i == row && j == column)))
+          return false;
       }
     }
-    return safe
+    return true;
   }
 
   safeToPlace = (puzzleArray, emptyCell, num) => {
@@ -322,7 +372,6 @@ export class Sudoku {
   }
 
   getSudokuMatrix() {
-    this.pokeHolesIntoPuzzle();
     return this.sudokuMatrix;
   }
 
@@ -342,12 +391,14 @@ export class Sudoku {
     }
   }
 
-  checkIfBoardIsValid() : boolean {
+  checkIfBoardIsValid(sudokuMatrix) : boolean {
     for (let i = 0; i < this.max; i++) {
       for (let j = 0; j < this.max; j++) {
         this.emptyCell.rowIndex = i;
         this.emptyCell.colIndex = j;
-        if (!(this.sudokuMatrix[i][j] > 0 && this.sudokuMatrix[i][j] <= this.max && this.safeToPlace(this.sudokuMatrix,this.emptyCell,this.sudokuMatrix[i][j]))) {
+        console.log(`checking if ${sudokuMatrix[i][j]} can is safe a position [${i}][${j}]`);
+        let safeToPlaceCheck = this.safeToPlace(sudokuMatrix,this.emptyCell,sudokuMatrix[i][j]);
+        if (!(sudokuMatrix[i][j] > 0 && sudokuMatrix[i][j] <= this.max && safeToPlaceCheck)) {
           return false;
         }
       }
@@ -355,8 +406,3 @@ export class Sudoku {
     return true;
   }
 } 
-
-
-
-
-
