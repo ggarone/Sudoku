@@ -1,6 +1,6 @@
 <h1 class="text-center bg-secondary py-2">SUDOKU</h1>
 <div class="container-lg pt-5">
-    <table class=" my-0 mx-auto" [cellSpacing]="0" [cellPadding]="0">
+    <!-- <table class=" my-0 mx-auto" [cellSpacing]="0" [cellPadding]="0">
         <tbody>
             <tr>
                 <td>
@@ -362,6 +362,19 @@
                 </td>
             </tr>
 
+        </tbody>
+    </table> -->
+
+    <table class=" my-0 mx-auto" [cellSpacing]="0" [cellPadding]="0">
+        <tbody>
+            <tr *ngFor="let x of sudoku">
+                <td class="boardCell" *ngFor="let y of x">
+                    <div class="staticValue">
+                        <span *ngIf="y != -1">{{y}}</span>
+                        <input class="" type="text" *ngIf="y == -1" maxlength="1">
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>

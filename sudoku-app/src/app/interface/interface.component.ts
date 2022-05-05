@@ -13,7 +13,18 @@ export class InterfaceComponent implements OnInit {
     
     ngOnInit(): void {
       let s: Sudoku = new Sudoku();
-      this.sudoku = s.getSudokuMatrix();
+      // this.sudoku = s.getSudokuMatrix();
+      this.sudoku = [
+        [0, 0, 0, 0, 0, 0, 0, -1, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, -1, 0, 0, 0, 0, 0],
+        [-1, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, -1, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0]
+      ]
     }
 
 }

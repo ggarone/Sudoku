@@ -4,4 +4,22 @@
     padding: 0;
     margin: 0;
     border: 1px solid black;
+    font-size: 25px;
+    text-align: center;
 }
+
+.staticValue input{
+    width: 42px;
+    height: 38px;
+    font-size: 25px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    /* margin-top: -3px; */
+    background: none !important;
+    text-align: center;
+    position: relative;
+    outline: none;
+    color: red;
+}
+
