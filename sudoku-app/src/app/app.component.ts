@@ -7,7 +7,7 @@ import { Sudoku } from './model.sudoku';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  sudoku: Sudoku[][];
+  sudoku: number[][];
 
 
   

@@ -248,7 +248,7 @@ export class Sudoku {
   
     for (let x of [0,1,2]) {  // Each box region has 3 rows
       for (let y of [0,1,2]) { // Each box region has 3 columns
-        if (puzzleArray[init_x + x][init_y + y] == num ) { // Num is present in box region?
+        if (puzzleArray[init_x + x][init_y + y] == num) { // Num is present in box region?
           safe = false // If number is found, it is not safe to place
         }
       }
@@ -305,9 +305,13 @@ export class Sudoku {
         // Recursively call the fill function to place num in next empty cell
         if ( this.fillPuzzle(startingBoard) ) return startingBoard 
         // If we were unable to place the future num, that num was wrong. Reset it and try next value
-        startingBoard[ emptyCell.rowIndex ][ emptyCell.colIndex ] = 0 
+        startingBoard[ emptyCell.rowIndex ][ emptyCell.colIndex ] = 0
       }
     }
     return false // If unable to place any number, return false, which triggers previous round to go to next num
+  }
+
+  getSudokuMatrix() {
+    return this.sudokuMatrix;
   }
 }
