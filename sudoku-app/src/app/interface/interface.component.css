@@ -1,3 +1,13 @@
+.text-title{
+    font-size: 4rem;
+    margin: 0;
+}
+
+.sfondo{
+    background: rgb(69,69,69);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(124,0,0,1) 100%);
+}
+
 .staticValue{
     width: 42px;
     height: 42px;

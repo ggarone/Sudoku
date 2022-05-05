@@ -1,16 +1,27 @@
-<h1 class="text-center bg-secondary py-2">SUDOKU</h1>
-<div class="container-lg pt-5">
+<div class="sfondo">
+<h1 class="text-center py-2 text-title border-bottom border-3 border-dark">SUDOKU</h1>
 
-  <table class=" my-0 mx-auto" [cellSpacing]="0" [cellPadding]="0">
-    <tbody>
-      <tr *ngFor="let x of sudoku">
-        <td class="boardCell" *ngFor="let y of x">
-          <div class="staticValue">
-            <span *ngIf="y != -1">{{y}}</span>
-            <input id="inputNum" class="" type="text" *ngIf="y == -1" maxlength="1" (keydown)="checkSudokuInput($event)">
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+  <div class="container-lg pt-3">
+    <div class="container-fluid text-center my-4">
+      <button type="button" class="btn btn-dark mx-3 shadow-none"> CHECK ! </button>
+      <button type="button" class="btn btn-dark mx-3 shadow-none">NEW GAME</button>
+    </div>
+    
+    <table class="my-0 mx-auto" [cellSpacing]="0" [cellPadding]="0">
+      <tbody>
+        <tr *ngFor="let x of sudoku">
+          <td class="boardCell" *ngFor="let y of x">
+            <div class="staticValue">
+              <span *ngIf="y != -1">{{y}}</span>
+              <input id="inputNum" class="" type="text" *ngIf="y == -1" maxlength="1"
+                (keydown)="checkSudokuInput($event)">
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
 </div>
