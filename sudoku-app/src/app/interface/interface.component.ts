@@ -14,10 +14,10 @@ export class InterfaceComponent implements OnInit {
       this.sudoku = s.getSudokuMatrix();
       console.log(this.sudoku);
       console.log("Is board valid?? => " + s.checkIfBoardIsValid(this.sudoku));
-      // s.pokeHolesIntoPuzzle();
-      // this.sudoku = s.getSudokuMatrix();
-      // console.log(this.sudoku);
-      // console.log("Is board valid?? => " + s.checkIfBoardIsValid());
+      s.pokeHolesIntoPuzzle();
+      this.sudoku = s.getSudokuMatrix();
+      console.log(this.sudoku);
+      console.log("Is board valid?? => " + s.checkIfBoardIsValid(this.sudoku));
   }
   
   checkSudokuInput(typedChar) {

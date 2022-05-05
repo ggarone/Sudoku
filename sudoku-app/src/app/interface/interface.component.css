@@ -4,8 +4,13 @@
 }
 
 .sfondo{
+    height: 800px;
     background: rgb(69,69,69);
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(124,0,0,1) 100%);
+}
+
+.newShadow{
+    box-shadow: 0px 0px 30px rgba(124,0,0,1);
 }
 
 .staticValue{
@@ -30,6 +35,6 @@
     text-align: center;
     position: relative;
     outline: none;
-    color: red;
+    color: black;
 }
 
