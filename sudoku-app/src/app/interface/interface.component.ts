@@ -26,5 +26,8 @@ export class InterfaceComponent implements OnInit {
       if(letterRegex.test(typedChar.key) && typedChar.key !== 'Backspace'){
         typedChar.preventDefault();
       }
+      else {
+
+      }
   }
 }

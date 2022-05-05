@@ -349,7 +349,7 @@ export class Sudoku {
   fillPuzzle = startingBoard => {
     const emptyCell = this.nextEmptyCell(startingBoard)
     // If there are no more zeros, the board is finished, return it
-    if (!emptyCell) return startingBoard
+    if (!emptyCell) return startingBoard 
 
     // Shuffled [0 - 9 ] array fills board randomly each pass
     for (let num of this.shuffle(this.numArray)) {
