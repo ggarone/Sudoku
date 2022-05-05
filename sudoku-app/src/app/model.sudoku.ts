@@ -396,7 +396,7 @@ export class Sudoku {
       for (let j = 0; j < this.max; j++) {
         this.emptyCell.rowIndex = i;
         this.emptyCell.colIndex = j;
-        console.log(`checking if ${sudokuMatrix[i][j]} can is safe a position [${i}][${j}]`);
+        // console.log(`checking if ${sudokuMatrix[i][j]} can is safe a position [${i}][${j}]`);
         let safeToPlaceCheck = this.safeToPlace(sudokuMatrix,this.emptyCell,sudokuMatrix[i][j]);
         if (!(sudokuMatrix[i][j] > 0 && sudokuMatrix[i][j] <= this.max && safeToPlaceCheck)) {
           return false;
