@@ -9,6 +9,7 @@ import { Sudoku } from '../model.sudoku';
 export class InterfaceComponent implements OnInit {
     sudoku: number[][];
     sudokuInput: number[][];
+    sudokuSolved: number[][];
     s: Sudoku = new Sudoku();
     result: string;
   
@@ -16,6 +17,7 @@ export class InterfaceComponent implements OnInit {
       this.sudoku = this.s.makeMatrix();
       this.sudokuInput = this.s.makeMatrix();
       this.s.fillPuzzle(this.sudoku);
+      this.sudokuSolved = this.sudoku;
       // console.log(this.sudoku);
       console.log("Is board valid?? => " + this.s.checkIfBoardIsValid(this.sudoku));
       this.s.pokeHolesIntoPuzzle(this.sudoku);
@@ -41,15 +43,30 @@ export class InterfaceComponent implements OnInit {
   }
 
   checkFullBoard(){
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        if(this.sudoku[i][j] == 0)
+          if(this.sudokuInput[i][j] == this.sudokuSolved[i][j]){
+            //cell input [i][j] => class green
 
+          }
+          else{
+            //cell input [i][j] => class red
+
+          }
+      }
+    }
     if(this.s.checkIfBoardIsValid(this.sudokuInput)){
       this.result = 'You Win!';
     }
     else {
       this.result = 'You Lose.';
     }
-
   }
+
+  // checkSingleCell(row,column): boolean{
+  //   return this.s.safeToPlace(this.sudokuInput,row,column);
+  // }
 
   clone(){
     for (let i = 0; i < 9; i++) {
