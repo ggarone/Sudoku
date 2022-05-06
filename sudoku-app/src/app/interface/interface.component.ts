@@ -12,6 +12,7 @@ export class InterfaceComponent implements OnInit {
     sudokuSolved: number[][];
     s: Sudoku = new Sudoku();
     result: string;
+    result2: string
   
     ngOnInit(): void {
       this.sudoku = this.s.makeMatrix();
@@ -44,10 +45,11 @@ export class InterfaceComponent implements OnInit {
 
   checkFullBoard(){
     if(this.s.checkIfBoardIsValid(this.sudokuInput)){
-      this.result = 'You Win!';
+      this.result = 'YOU WIN!!!';
     }
     else {
-      this.result = 'You Lose.';
+      this.result = 'YOU LOSE';
+      this.result2 = 'TRY AGAIN'
     }
 
     for (let i = 0; i < 9; i++) {
