@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Sudoku } from '../model.sudoku';
 
 @Component({
@@ -8,32 +8,55 @@ import { Sudoku } from '../model.sudoku';
 })
 export class InterfaceComponent implements OnInit {
     sudoku: number[][];
-    row: number;
-    column: number;
+    sudokuInput: number[][];
+    s: Sudoku = new Sudoku();
+    result: string;
   
     ngOnInit(): void {
-      let s: Sudoku = new Sudoku();
-      this.sudoku = s.getSudokuMatrix();
-      console.log(this.sudoku);
-      console.log("Is board valid?? => " + s.checkIfBoardIsValid(this.sudoku));
-      // s.pokeHolesIntoPuzzle();
-      // this.sudoku = s.getSudokuMatrix();
+      this.sudoku = this.s.makeMatrix();
+      this.sudokuInput = this.s.makeMatrix();
+      this.s.fillPuzzle(this.sudoku);
       // console.log(this.sudoku);
-      // console.log("Is board valid?? => " + s.checkIfBoardIsValid(this.sudoku));
-
-      const TR = document.querySelector('tr');
-      console.log(TR.getAttribute('row'));
-      
+      console.log("Is board valid?? => " + this.s.checkIfBoardIsValid(this.sudoku));
+      this.s.pokeHolesIntoPuzzle(this.sudoku);
+      // console.log(this.sudoku);
+      console.log("Is board valid?? => " + this.s.checkIfBoardIsValid(this.sudoku));      
+      this.clone();
   }
   
-  checkSudokuInput(typedChar) {
+  checkSudokuInput(event,row,column) {
     let letterRegex = /[^0-9]/;
       
-      if(letterRegex.test(typedChar.key) && typedChar.key !== 'Backspace'){
-        typedChar.preventDefault();
+      if(letterRegex.test(event.key) && event.key !== 'Backspace'){
+        event.preventDefault();
       }
       else {
-
+        console.log(row,column);
+        
+        this.sudokuInput[row][column] = Number(event.key);
+        console.log(this.sudoku);
       }
+
+
   }
+
+  checkFullBoard(){
+
+    if(this.s.checkIfBoardIsValid(this.sudokuInput)){
+      this.result = 'You Win!';
+    }
+    else {
+      this.result = 'You Lose.';
+    }
+
+  }
+
+  clone(){
+    for (let i = 0; i < 9; i++) {
+      for (let j = 0; j < 9; j++) {
+        this.sudokuInput[i][j] = this.sudoku[i][j];
+      }
+    }
+  }
+
 }

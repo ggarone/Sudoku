@@ -236,8 +236,17 @@ export class Sudoku {
     colIndex: 0
   }
 
-  constructor() {
-    this.sudokuMatrix = this.fillPuzzle(this.sudokuMatrix);
+  constructor() { }
+
+    makeMatrix(): number[][] {
+    let arr = [];
+    for (let i = 0; i < this.max; i++) {
+      arr[i] = [];
+      for (let j = 0; j < this.max; j++) {
+        arr[i][j] = 0;
+      }
+    }
+    return arr;
   }
 
   shuffle(array) {
@@ -375,15 +384,15 @@ export class Sudoku {
     return this.sudokuMatrix;
   }
 
-  pokeHolesIntoPuzzle() {
+  pokeHolesIntoPuzzle(sudokuMatrix: number[][]) {
     let chance = 5;
-    let flag = 35; // make a easu sudoku with only 49 Holes
+    let flag = 35; // make a easy sudoku with only 49 Holes
     while(flag > 0){
       for (let i = 0; i < this.max; i++) {
         for (let j = 0; j < this.max; j++) {
           let randomNum = Math.floor(Math.random() * 100) + 1;
-          if(randomNum <= chance && flag > 0 && this.sudokuMatrix[i][j] != -1){
-            this.sudokuMatrix[i][j] = -1;
+          if(randomNum <= chance && flag > 0 && sudokuMatrix[i][j] != -1){
+            sudokuMatrix[i][j] = -1;
             flag--;
           }
         }
