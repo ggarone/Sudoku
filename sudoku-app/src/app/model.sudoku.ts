@@ -388,10 +388,18 @@ export class Sudoku {
     return true;
   }
 
-  checkSquare(number: number, x: number, y: number) {
+  checkSquare(number: number, x: number, y: number, square) {
+    
+    
     let init_x = x - (x % 3);
     let init_y = y - (y % 3);
+    let result = `${init_x}${init_y}`
+    if(result == "00" || result == "06" || result == "33" || result == "60" || result == "66"){
+      // console.log(square.classList);
+      
 
-    return `${init_x}${init_y}`; //00 03 06
+      square.classList.add("squareColor")
+    }
+    // return `${init_x}${init_y}`; //00 03 06
   }
 } 

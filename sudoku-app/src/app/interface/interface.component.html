@@ -10,7 +10,7 @@
     <table class="my-0 my-4 mx-auto bg-white newShadow" [cellSpacing]="0" [cellPadding]="0">
       <tbody>
         <tr  #rowSudoku *ngFor="let row of sudoku; index as i">
-          <td class="boardCell" *ngFor="let column of row; index as j" [attr.column]="j" [attr.row]="i" [attr.square]="s.checkSquare(column,i,j)">
+          <td #square class="boardCell" *ngFor="let column of row; index as j" [attr.column]="j" [attr.row]="i" [attr.square]="s.checkSquare(column,i,j,square)">
             <div class="staticValue">
               <span *ngIf="column != -1">{{column}}</span>
               <input id="inputNum" class="" type="text" *ngIf="column == -1" maxlength="1"
