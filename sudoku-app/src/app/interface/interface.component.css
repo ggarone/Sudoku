@@ -14,19 +14,19 @@
 }
 
 .staticValue{
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 3rem;
+    height: 3rem;
     padding: 0;
     margin: 0;
     border: 1px solid black;
-    font-size: 25px;
+    font-size: 1.9rem;
     text-align: center;
 }
 
 .staticValue input{
-    width: 2.5rem;
-    height: 38px;
-    font-size: 25px;
+    width: 3rem;
+    height: 40px;
+    font-size: 1.9rem;
     border: 0;
     padding: 0;
     margin: 0;
