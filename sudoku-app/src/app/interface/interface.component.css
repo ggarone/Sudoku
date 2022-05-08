@@ -14,8 +14,8 @@
 }
 
 .staticValue{
-    width: 42px;
-    height: 42px;
+    width: 2.5rem;
+    height: 2.5rem;
     padding: 0;
     margin: 0;
     border: 1px solid black;
@@ -24,7 +24,7 @@
 }
 
 .staticValue input{
-    width: 42px;
+    width: 2.5rem;
     height: 38px;
     font-size: 25px;
     border: 0;
@@ -53,4 +53,8 @@ span {
 .result{
     text-shadow: 0px 0px 30px black;
     line-height: 3rem;
+}
+
+.squareColor{
+    background-color: lightgray;
 }
