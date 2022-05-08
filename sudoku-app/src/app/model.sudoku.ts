@@ -258,33 +258,6 @@ export class Sudoku {
     return newArray;
   }
 
-  /*--------------------------------------------------------------------------------------------
-  --------------------------------- Check if Location Safe -------------------------------------
-  --------------------------------------------------------------------------------------------*/
-
-  // rowSafe = (puzzleArray, emptyCell, num) => {
-  //   // -1 is return value of .find() if value not found
-  //   return puzzleArray[emptyCell.rowIndex].indexOf(num) == -1
-  // }
-  // colSafe = (puzzleArray, emptyCell, num) => {
-  //   return !puzzleArray.some(row => row[emptyCell.colIndex] == num)
-  // }
-
-  // boxSafe = (puzzleArray, emptyCell, num) => {
-  //   let init_x = emptyCell.rowIndex - (emptyCell.rowIndex % 3) // Define top left corner of box region for empty cell
-  //   let init_y = emptyCell.colIndex - (emptyCell.colIndex % 3)
-  //   let safe = true
-
-  //   for (let x of [0, 1, 2]) { // Each box region has 3 rows
-  //     for (let y of [0, 1, 2]) { // Each box region has 3 columns
-  //       if (puzzleArray[init_x + x][init_y + y] == num) { // Num is present in box region?
-  //         safe = false // If number is found, it is not safe to place
-  //       }
-  //     }
-  //   }
-  //   return safe
-  // }
-
   rowSafe(sudokuMatrix,emptyCell,number): boolean {
     let row = emptyCell.rowIndex;
     let column = emptyCell.colIndex;
@@ -413,5 +386,12 @@ export class Sudoku {
       }
     }
     return true;
+  }
+
+  checkSquare(number: number, x: number, y: number) {
+    let init_x = x - (x % 3);
+    let init_y = y - (y % 3);
+
+    return `${init_x}${init_y}`; //00 03 06
   }
 } 
