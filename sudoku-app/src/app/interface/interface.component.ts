@@ -12,7 +12,6 @@ export class InterfaceComponent implements OnInit {
     sudokuSolved: number[][];
     s: Sudoku = new Sudoku();
     result: string;
-    result2: string
 
     ngOnInit(): void {
       this.createNewGame();
@@ -29,7 +28,8 @@ export class InterfaceComponent implements OnInit {
     this.s.pokeHolesIntoPuzzle(this.sudoku);
     // console.log(this.sudoku);
     console.log("Is board valid?? => " + this.s.checkIfBoardIsValid(this.sudoku));      
-    this.clone();      
+    this.clone();
+    this.result = ""      
   }
   
   checkSudokuInput(event,row,column) {
@@ -54,7 +54,6 @@ export class InterfaceComponent implements OnInit {
     }
     else {
       this.result = 'YOU LOSE';
-      this.result2 = 'TRY AGAIN'
     }
 
     for (let i = 0; i < 9; i++) {

@@ -39,7 +39,7 @@
 }
 
 span {
-    color: rgb(143, 143, 143);
+    color: rgb(112, 112, 112);
 }
 
 .green{
@@ -55,6 +55,14 @@ span {
     line-height: 3rem;
 }
 
-.squareColor{
+.squareColorOdd{
     background-color: lightgray;
+}
+
+.squareColorEven{
+    background-color: darkgray;
+}
+
+.boardCell:hover{
+    filter:brightness(85%)
 }

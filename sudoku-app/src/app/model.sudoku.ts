@@ -395,11 +395,9 @@ export class Sudoku {
     let init_y = y - (y % 3);
     let result = `${init_x}${init_y}`
     if(result == "00" || result == "06" || result == "33" || result == "60" || result == "66"){
-      // console.log(square.classList);
-      
-
-      square.classList.add("squareColor")
+      square.classList.add("squareColorOdd")
+    }else{
+      square.classList.add("squareColorEven")
     }
-    // return `${init_x}${init_y}`; //00 03 06
   }
 } 
