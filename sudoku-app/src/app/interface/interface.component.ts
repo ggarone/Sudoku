@@ -15,17 +15,21 @@ export class InterfaceComponent implements OnInit {
     result2: string
 
     ngOnInit(): void {
-      this.sudoku = this.s.makeMatrix();
-      this.sudokuInput = this.s.makeMatrix();
-      this.s.fillPuzzle(this.sudoku);
-      this.sudokuSolved = this.sudoku;
-      // console.log(this.sudoku);
-      console.log("Is board valid?? => " + this.s.checkIfBoardIsValid(this.sudoku));
-      this.s.pokeHolesIntoPuzzle(this.sudoku);
-      // console.log(this.sudoku);
-      console.log("Is board valid?? => " + this.s.checkIfBoardIsValid(this.sudoku));      
-      this.clone();      
+      this.createNewGame();
 
+  }
+
+  createNewGame(){
+    this.sudoku = this.s.makeMatrix();
+    this.sudokuInput = this.s.makeMatrix();
+    this.s.fillPuzzle(this.sudoku);
+    this.sudokuSolved = this.sudoku;
+    // console.log(this.sudoku);
+    console.log("Is board valid?? => " + this.s.checkIfBoardIsValid(this.sudoku));
+    this.s.pokeHolesIntoPuzzle(this.sudoku);
+    // console.log(this.sudoku);
+    console.log("Is board valid?? => " + this.s.checkIfBoardIsValid(this.sudoku));      
+    this.clone();      
   }
   
   checkSudokuInput(event,row,column) {
@@ -76,8 +80,4 @@ export class InterfaceComponent implements OnInit {
       }
     }
   }
-
-
-
-
 }
