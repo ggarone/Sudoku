@@ -39,15 +39,11 @@
 }
 
 span {
-    color: rgb(112, 112, 112);
+    color: rgb(153, 0, 0);
 }
 
 .green{
     color: green;
-}
-
-.red{
-    color: red;
 }
 
 .result{
